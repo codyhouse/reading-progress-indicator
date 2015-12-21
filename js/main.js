@@ -22,6 +22,7 @@ jQuery(document).ready(function($){
 
 		$(window).on('resize', resetScroll);
 
+		updateArticle();
 		updateSidebarPosition();
 
 		aside.on('click', 'a', function(event){
@@ -116,7 +117,9 @@ jQuery(document).ready(function($){
 	}
 
 	function changeUrl(link) {
-        if( window.location.href != link && history.pushState ) window.history.pushState({path: link},'',link);
+		var pageArray = location.pathname.split('/'),
+        	actualPage = pageArray[pageArray.length - 1] ;
+        if( actualPage != link && history.pushState ) window.history.pushState({path: link},'',link);
 	}
 
 	function checkMQ() {
